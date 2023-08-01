@@ -102,6 +102,11 @@ public class CustomerView extends javax.swing.JFrame {
         });
 
         updateButton.setText("updateCustomer");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setText("Delete Customer");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -286,6 +291,11 @@ public class CustomerView extends javax.swing.JFrame {
         searchCustomer();
     }//GEN-LAST:event_customerTableMouseClicked
 
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+        updateCustomer();
+    }//GEN-LAST:event_updateButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -412,7 +422,27 @@ private void searchCustomer(){
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-
 }
+
+public void updateCustomer(){
+        try {
+            CustomerModel customer = new CustomerModel(
+                    custIdText.getText(),
+                    custTitleText.getText(),
+                    custNameText.getText(),
+                    custDobText.getText(),
+                    custAddressText.getText(),
+                    custCityText.getText(),
+                    custProvinceText.getText(),
+                    custPostalCodeText.getText(),
+                    Double.parseDouble(custSalaryText.getText()));
+           String resp= customerContoller.updateCustomer(customer);
+         JOptionPane.showMessageDialog(this,resp);
+        clear();
+        loadCallCustomer();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+
 }

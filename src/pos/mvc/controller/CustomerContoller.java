@@ -83,4 +83,23 @@ public class CustomerContoller {
             return null; // Return null if no customer with the given custId is found
         
     }
+    public String updateCustomer(CustomerModel customerModel) throws SQLException{
+     Connection connection = DBConnection.getInstance().getConnection();
+        String query = "UPDATE customer set title=?,name=?,dob=?,salary=?,address=?,city=?,province=?,postalcode=? where ID=?";   
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(9, customerModel.getCustId());
+        preparedStatement.setString(1, customerModel.getTitle());
+        preparedStatement.setString(2, customerModel.getName());
+        preparedStatement.setString(3, customerModel.getDob());
+        preparedStatement.setDouble(4, customerModel.getSalary());
+        preparedStatement.setString(5, customerModel.getAddress());
+        preparedStatement.setString(6, customerModel.getCity());
+        preparedStatement.setString(7, customerModel.getProvince());
+        preparedStatement.setString(8, customerModel.getZip());
+        if (preparedStatement.executeUpdate() > 0) {
+            return "Success";
+        } else {
+            return "Fail";
+        }
+    }
 }
