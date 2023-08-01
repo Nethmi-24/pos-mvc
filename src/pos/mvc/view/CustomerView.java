@@ -21,11 +21,12 @@ import pos.mvc.model.CustomerModel;
 public class CustomerView extends javax.swing.JFrame {
 
     private CustomerContoller customerContoller;
+
     /**
      * Creates new form CustomerView
      */
     public CustomerView() {
-        customerContoller=new CustomerContoller();
+        customerContoller = new CustomerContoller();
         initComponents();
         loadCallCustomer();
     }
@@ -271,19 +272,19 @@ public class CustomerView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
-    
+
     private void custIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custIdTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_custIdTextActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        deleteCustomer();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-   saveCustomer();
-   // TODO add your handling code here:
+        saveCustomer();
+        // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
@@ -299,7 +300,6 @@ public class CustomerView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Header;
@@ -343,8 +343,7 @@ public class CustomerView extends javax.swing.JFrame {
 //            Double.parseDouble(custSalaryText.getText())
 //    );
 //            }
-
-private void saveCustomer() {
+    private void saveCustomer() {
         try {
             CustomerModel customer = new CustomerModel(
                     custIdText.getText(),
@@ -356,75 +355,76 @@ private void saveCustomer() {
                     custProvinceText.getText(),
                     custPostalCodeText.getText(),
                     Double.parseDouble(custSalaryText.getText()));
-            
+
             System.out.println("Customer" + customer);
             // Additional logic to save the customer information goes here.
-            String resp=customerContoller.saveCustomer(customer);
-        JOptionPane.showMessageDialog(this,resp);
-        clear();
-        loadCallCustomer();
+            String resp = customerContoller.saveCustomer(customer);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadCallCustomer();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
-       JOptionPane.showMessageDialog(this, ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-}
-private void clear(){
-    custIdText.setText("");
-    custTitleText.setText("");
-    custNameText.setText("");
-    custDobText.setText("");
-    custCityText.setText("");
-    custProvinceText.setText("");
-    custAddressText.setText("");
-    custSalaryText.setText("");
-    custPostalCodeText.setText("");
-}
+    }
 
-private void loadCallCustomer() {
-    String[] columns = { "Id", "Name", "Address", "Salary", "Postal Code" };
-    DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    };
-    customerTable.setModel(dtm);
-    ArrayList<CustomerModel> customers = null;
+    private void clear() {
+        custIdText.setText("");
+        custTitleText.setText("");
+        custNameText.setText("");
+        custDobText.setText("");
+        custCityText.setText("");
+        custProvinceText.setText("");
+        custAddressText.setText("");
+        custSalaryText.setText("");
+        custPostalCodeText.setText("");
+    }
+
+    private void loadCallCustomer() {
+        String[] columns = {"Id", "Name", "Address", "Salary", "Postal Code"};
+        DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        customerTable.setModel(dtm);
+        ArrayList<CustomerModel> customers = null;
         try {
             customers = customerContoller.getAllCustomers();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    for (CustomerModel customer : customers) {
-        Object[] rowData = { customer.getCustId(), customer.getName(), customer.getAddress(), customer.getSalary(), customer.getZip()};
-        dtm.addRow(rowData);
+        for (CustomerModel customer : customers) {
+            Object[] rowData = {customer.getCustId(), customer.getName(), customer.getAddress(), customer.getSalary(), customer.getZip()};
+            dtm.addRow(rowData);
+        }
     }
-}
 
-private void searchCustomer(){
- 
+    private void searchCustomer() {
+
         try {
-              String custId= customerTable.getValueAt(customerTable.getSelectedRow(),0).toString();
-    System.out.println(custId);
-    CustomerModel customerModel;
-           customerModel = customerContoller.getCustomer(custId);
-            if (customerModel!=null){
-        custIdText.setText(customerModel.getCustId());
-        custTitleText.setText(customerModel.getTitle());
-        custNameText.setText(customerModel.getName());
-        custDobText.setText(customerModel.getDob());
-        custAddressText.setText(customerModel.getAddress());
-        custCityText.setText(customerModel.getCity());
-        custProvinceText.setText(customerModel.getProvince());
-        custPostalCodeText.setText(customerModel.getZip());
-        custSalaryText.setText(Double.toString(customerModel.getSalary()));
-    }
+            String custId = customerTable.getValueAt(customerTable.getSelectedRow(), 0).toString();
+            System.out.println(custId);
+            CustomerModel customerModel;
+            customerModel = customerContoller.getCustomer(custId);
+            if (customerModel != null) {
+                custIdText.setText(customerModel.getCustId());
+                custTitleText.setText(customerModel.getTitle());
+                custNameText.setText(customerModel.getName());
+                custDobText.setText(customerModel.getDob());
+                custAddressText.setText(customerModel.getAddress());
+                custCityText.setText(customerModel.getCity());
+                custProvinceText.setText(customerModel.getProvince());
+                custPostalCodeText.setText(customerModel.getZip());
+                custSalaryText.setText(Double.toString(customerModel.getSalary()));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+    }
 
-public void updateCustomer(){
+    public void updateCustomer() {
         try {
             CustomerModel customer = new CustomerModel(
                     custIdText.getText(),
@@ -436,13 +436,24 @@ public void updateCustomer(){
                     custProvinceText.getText(),
                     custPostalCodeText.getText(),
                     Double.parseDouble(custSalaryText.getText()));
-           String resp= customerContoller.updateCustomer(customer);
-         JOptionPane.showMessageDialog(this,resp);
-        clear();
-        loadCallCustomer();
+            String resp = customerContoller.updateCustomer(customer);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadCallCustomer();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+    }
 
+    private void deleteCustomer() {
+        try {
+            String custId = custIdText.getText();
+            String resp = customerContoller.deleteCustomer(custId);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadCallCustomer();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

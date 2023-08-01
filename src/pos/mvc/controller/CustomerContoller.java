@@ -102,4 +102,15 @@ public class CustomerContoller {
             return "Fail";
         }
     }
+    public String deleteCustomer(String custId)throws SQLException{
+      Connection connection = DBConnection.getInstance().getConnection();
+        String query = "Delete from customer where ID=?";
+        PreparedStatement statement=connection.prepareCall(query);
+        statement.setString(1, custId);
+               if (statement.executeUpdate() > 0) {
+            return "Success";
+        } else {
+            return "Fail";
+        }
+    }
 }
