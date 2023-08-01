@@ -123,6 +123,11 @@ public class CustomerView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        customerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(customerTable);
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
@@ -276,6 +281,11 @@ public class CustomerView extends javax.swing.JFrame {
    // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
+        // TODO add your handling code here:
+        searchCustomer();
+    }//GEN-LAST:event_customerTableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -381,5 +391,28 @@ private void loadCallCustomer() {
     }
 }
 
+private void searchCustomer(){
+ 
+        try {
+              String custId= customerTable.getValueAt(customerTable.getSelectedRow(),0).toString();
+    System.out.println(custId);
+    CustomerModel customerModel;
+           customerModel = customerContoller.getCustomer(custId);
+            if (customerModel!=null){
+        custIdText.setText(customerModel.getCustId());
+        custTitleText.setText(customerModel.getTitle());
+        custNameText.setText(customerModel.getName());
+        custDobText.setText(customerModel.getDob());
+        custAddressText.setText(customerModel.getAddress());
+        custCityText.setText(customerModel.getCity());
+        custProvinceText.setText(customerModel.getProvince());
+        custPostalCodeText.setText(customerModel.getZip());
+        custSalaryText.setText(Double.toString(customerModel.getSalary()));
+    }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
 
+}
 }
