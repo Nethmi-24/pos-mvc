@@ -4,6 +4,7 @@
  */
 package pos.mvc;
 import pos.mvc.view.CustomerView;
+import pos.mvc.view.OrderFrame;
 /**
  *
  * @author Nethmi
@@ -16,7 +17,9 @@ public class PosMvc {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello");
-        new CustomerView().setVisible(true);
+        //new CustomerView().setVisible(true);
+        new OrderFrame().setVisible(true);
+        
     }
     
 }
