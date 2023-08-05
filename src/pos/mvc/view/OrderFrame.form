@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="placeOrder"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,12 +24,18 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel" alignment="1" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="panel" min="-2" pref="776" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="106" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel" alignment="0" min="-2" pref="484" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="panel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -39,44 +46,61 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="Header" alignment="0" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="updateButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="addButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="tablePanel" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="customerIdLabel" min="-2" pref="86" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="customerIdText" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="customerIdLabel" min="-2" pref="86" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                          <Component id="customerIdText" min="-2" pref="120" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="orderIdLabel" min="-2" pref="83" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                          <Component id="orderIdText" min="-2" pref="120" max="-2" attributes="0"/>
-                                      </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="orderIdLabel" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
+                                      <Component id="orderLabel" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                                      <Component id="discount" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                                      <Component id="quantityLabel" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="searchCustomer" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
-                                  <Component id="customerData" min="-2" pref="400" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="orderIIdText" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="orderIdText" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="discountText" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="quantityText" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="searchCustomer" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="customerDataLabel" min="-2" pref="400" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="searchOrder" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="orderData" min="-2" pref="400" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="addItemButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="tablePanel" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="itemTable" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="placeOrder" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -91,19 +115,38 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="customerIdText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="customerIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="searchCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="customerData" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="updateButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="customerDataLabel" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="customerIdText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="orderLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="orderIIdText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchOrder" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="orderData" min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="quantityText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="quantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="discountText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="discount" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addItemButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="placeOrder" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="tablePanel" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="itemTable" min="-2" pref="394" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -128,93 +171,103 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderIdTextActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="customerIdText">
+        <Component class="javax.swing.JTextField" name="orderIIdText">
         </Component>
         <Component class="javax.swing.JLabel" name="customerIdLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Customer"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="addButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Save Customer"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="updateButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="updateCustomer"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="deleteButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Delete Customer"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
-          </Events>
-        </Component>
         <Container class="javax.swing.JPanel" name="tablePanel">
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="119" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="314" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="customerTable">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
-                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                      </Table>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="customerTableMouseClicked"/>
-                  </Events>
-                </Component>
-              </SubComponents>
-            </Container>
-          </SubComponents>
         </Container>
         <Component class="javax.swing.JButton" name="searchCustomer">
           <Properties>
             <Property name="text" type="java.lang.String" value="Search"/>
             <Property name="actionCommand" type="java.lang.String" value="searchCustomer"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchCustomerActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="customerData">
+        <Component class="javax.swing.JLabel" name="customerDataLabel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="orderLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Order"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="customerIdText">
+        </Component>
+        <Component class="javax.swing.JButton" name="searchOrder">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Search"/>
+            <Property name="actionCommand" type="java.lang.String" value="searchCustomer"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="orderData">
+        </Component>
+        <Component class="javax.swing.JTextField" name="quantityText">
+        </Component>
+        <Component class="javax.swing.JTextField" name="discountText">
+        </Component>
+        <Component class="javax.swing.JLabel" name="quantityLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="QTY"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="discount">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Discount"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="addItemButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Add"/>
+            <Property name="actionCommand" type="java.lang.String" value="addItem"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="itemTable">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="jTable1">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="4" rowCount="4">
+                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="placeOrder">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="place Order"/>
+            <Property name="actionCommand" type="java.lang.String" value="placeOrder"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="placeOrderActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

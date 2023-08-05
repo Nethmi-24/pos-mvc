@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package pos.mvc.view;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import pos.mvc.controller.CustomerContoller;
+import pos.mvc.model.CustomerModel;
 
 /**
  *
@@ -10,10 +16,12 @@ package pos.mvc.view;
  */
 public class OrderFrame extends javax.swing.JFrame {
 
+    private CustomerContoller customerController;
     /**
      * Creates new form OrderFrame
      */
     public OrderFrame() {
+        customerController=new CustomerContoller();
         initComponents();
     }
 
@@ -30,18 +38,26 @@ public class OrderFrame extends javax.swing.JFrame {
         Header = new javax.swing.JLabel();
         orderIdLabel = new javax.swing.JLabel();
         orderIdText = new javax.swing.JTextField();
-        customerIdText = new javax.swing.JTextField();
+        orderIIdText = new javax.swing.JTextField();
         customerIdLabel = new javax.swing.JLabel();
-        addButton = new javax.swing.JButton();
-        updateButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        customerTable = new javax.swing.JTable();
         searchCustomer = new javax.swing.JButton();
-        customerData = new javax.swing.JLabel();
+        customerDataLabel = new javax.swing.JLabel();
+        orderLabel = new javax.swing.JLabel();
+        customerIdText = new javax.swing.JTextField();
+        searchOrder = new javax.swing.JButton();
+        orderData = new javax.swing.JLabel();
+        quantityText = new javax.swing.JTextField();
+        discountText = new javax.swing.JTextField();
+        quantityLabel = new javax.swing.JLabel();
+        discount = new javax.swing.JLabel();
+        addItemButton = new javax.swing.JButton();
+        itemTable = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        placeOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("placeOrder");
 
         Header.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
         Header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -57,28 +73,38 @@ public class OrderFrame extends javax.swing.JFrame {
 
         customerIdLabel.setText("Customer");
 
-        addButton.setText("Save Customer");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
+        tablePanel.setLayout(tablePanelLayout);
+        tablePanelLayout.setHorizontalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        tablePanelLayout.setVerticalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        searchCustomer.setText("Search");
+        searchCustomer.setActionCommand("searchCustomer");
+        searchCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                searchCustomerActionPerformed(evt);
             }
         });
 
-        updateButton.setText("updateCustomer");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
+        orderLabel.setText("Order");
 
-        deleteButton.setText("Delete Customer");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
+        searchOrder.setText("Search");
+        searchOrder.setActionCommand("searchCustomer");
 
-        customerTable.setModel(new javax.swing.table.DefaultTableModel(
+        quantityLabel.setText("QTY");
+
+        discount.setText("Discount");
+
+        addItemButton.setText("Add");
+        addItemButton.setActionCommand("addItem");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -89,32 +115,15 @@ public class OrderFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        customerTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                customerTableMouseClicked(evt);
+        itemTable.setViewportView(jTable1);
+
+        placeOrder.setText("place Order");
+        placeOrder.setActionCommand("placeOrder");
+        placeOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placeOrderActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(customerTable);
-
-        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
-        tablePanel.setLayout(tablePanelLayout);
-        tablePanelLayout.setHorizontalGroup(
-            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tablePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        tablePanelLayout.setVerticalGroup(
-            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(314, 314, 314))
-        );
-
-        searchCustomer.setText("Search");
-        searchCustomer.setActionCommand("searchCustomer");
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -124,32 +133,46 @@ public class OrderFrame extends javax.swing.JFrame {
             .addGroup(panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(customerIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(customerIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(orderIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(orderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(discount, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(quantityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(orderIIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(orderIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(discountText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                                .addComponent(deleteButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(updateButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addButton))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelLayout.createSequentialGroup()
-                                        .addComponent(customerIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(customerIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelLayout.createSequentialGroup()
-                                        .addComponent(orderIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(orderIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panelLayout.createSequentialGroup()
                                 .addComponent(searchCustomer)
-                                .addGap(177, 177, 177)
-                                .addComponent(customerData, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(customerDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(searchOrder)
+                                .addGap(18, 18, 18)
+                                .addComponent(orderData, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addItemButton))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(itemTable)
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(placeOrder)
+                        .addGap(132, 132, 132)))
+                .addContainerGap())
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,28 +184,48 @@ public class OrderFrame extends javax.swing.JFrame {
                     .addComponent(orderIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(customerIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(customerIdLabel)
                     .addComponent(searchCustomer)
-                    .addComponent(customerData))
-                .addGap(167, 167, 167)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(updateButton)
-                    .addComponent(deleteButton))
+                    .addComponent(customerDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(orderLabel)
+                        .addComponent(orderIIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchOrder))
+                    .addComponent(orderData, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantityLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(discountText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(discount)
+                    .addComponent(addItemButton))
+                .addGap(61, 61, 61)
+                .addComponent(placeOrder)
+                .addGap(18, 18, 18)
+                .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(itemTable, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -192,25 +235,14 @@ public class OrderFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_orderIdTextActionPerformed
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-       
+    private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addButtonActionPerformed
+    }//GEN-LAST:event_placeOrderActionPerformed
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+    private void searchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerActionPerformed
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_customerTableMouseClicked
+        searchCustomer();
+    }//GEN-LAST:event_searchCustomerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,18 +281,42 @@ public class OrderFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Header;
-    private javax.swing.JButton addButton;
-    private javax.swing.JLabel customerData;
+    private javax.swing.JButton addItemButton;
+    private javax.swing.JLabel customerDataLabel;
     private javax.swing.JLabel customerIdLabel;
     private javax.swing.JTextField customerIdText;
-    private javax.swing.JTable customerTable;
-    private javax.swing.JButton deleteButton;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel discount;
+    private javax.swing.JTextField discountText;
+    private javax.swing.JScrollPane itemTable;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel orderData;
+    private javax.swing.JTextField orderIIdText;
     private javax.swing.JLabel orderIdLabel;
     private javax.swing.JTextField orderIdText;
+    private javax.swing.JLabel orderLabel;
     private javax.swing.JPanel panel;
+    private javax.swing.JButton placeOrder;
+    private javax.swing.JLabel quantityLabel;
+    private javax.swing.JTextField quantityText;
     private javax.swing.JButton searchCustomer;
+    private javax.swing.JButton searchOrder;
     private javax.swing.JPanel tablePanel;
-    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    private void searchCustomer() {
+        try {
+            String custId=customerIdText.getText();
+            CustomerModel cust=customerController.getCustomer(custId);
+        if(cust!=null){
+        customerDataLabel.setText(cust.getName()+","+cust.getAddress());
+       
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"No customer found");
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
